@@ -55,8 +55,7 @@ void loop() {
     lcd.clear();
     char* tmp = (char*) calloc(strlen(compliments) + 1, sizeof(char));
     char* result = parseData(tmp, index);
-    // TODO: Print the string
-    free(result);
+    printString(result);
     free(tmp);
   } else if (!digitalRead(QUOTE_BUTTON_PIN)) {
     // Get new random number in bounds
@@ -68,7 +67,6 @@ void loop() {
     strcpy(tmp, quotes);
     char* result = parseData(tmp, index);
     printString(result);
-    free(result);
     free(tmp);
   }
   delay(500); // TODO: Is it necessary to delay at all?
