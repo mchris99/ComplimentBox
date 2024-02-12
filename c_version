@@ -26,18 +26,27 @@ char* parseData(char* data, int num) {
 
 void printString(char* s) {
     //lcd.print(s);
-    printf("%s",s);
+    printf("%s\n",s);
 }
 
-void test() {
-    // test with index = 1
-    int index = 1;
-    char* tmp = (char*) calloc(strlen(quotes) + 1, sizeof(char));
-    strcpy(tmp, quotes);
+void test(int index, char** arr) {
+    // test with index
+    char* tmp = (char*) calloc(strlen(arr) + 1, sizeof(char));
+    strcpy(tmp, arr);
     char* result = parseData(tmp, index);
+    // TODO: result is NULL
     printString(result);
-    free(result);
+    //free(result); // NOTE: Don't free this
     free(tmp);
 }
 
-void main() {test();}
+void main() {
+    int idx = 0;
+    while (idx < numQuotes) {
+        test(idx++, quotes);
+    }
+    idx = 0;
+    while (idx < numCompliments) {
+        test(idx++, compliments);
+    }
+}
